@@ -1,30 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rocketledger/models/add_order.dart';
+import 'package:rocketledger/core/constants/app_colors.dart';
 
-import '../constant.dart';
-import '../widgets/apptext.dart';
+import '../../../models/add_order.dart';
 import 'components/order_container.dart';
 import 'components/order_table_title.dart';
 import 'components/total_result.dart';
 import 'controller/order_controller.dart';
 
-class SelfOrderScreen extends StatelessWidget {
-  const SelfOrderScreen({super.key});
+class LedgerScreen extends StatelessWidget {
+  const LedgerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var orderController = Get.put(OrderController());
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: MyColor.background,
-        title: const AppText(
-          "Self Order",
-          color: MyColor.primary,
-        ),
-      ),
+      resizeToAvoidBottomInset: true,
       body: GetBuilder<OrderController>(
         builder: (context) {
           return Column(
@@ -71,7 +63,7 @@ class SelfOrderScreen extends StatelessWidget {
                         horizontal: 3.0,
                         vertical: 5,
                       ),
-                      color: index.isEven ? Colors.transparent : MyColor.backgroundAlt,
+                      color: index.isEven ? Colors.transparent : AppColors.backgroundAlt,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -108,10 +100,12 @@ class SelfOrderScreen extends StatelessWidget {
   Widget tbData(String label, double fontSize) {
     return Expanded(
       flex: 4,
-      child: AppText(
+      child: Text(
         label,
         textAlign: TextAlign.center,
-        fontSize: fontSize,
+        style: TextStyle(
+          fontSize: fontSize,
+        ),
       ),
     );
   }

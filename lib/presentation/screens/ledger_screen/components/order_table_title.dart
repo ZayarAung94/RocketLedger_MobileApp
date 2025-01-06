@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constant.dart';
+import '../../../../core/constants/app_colors.dart';
 
 class OrderTableTitle extends StatelessWidget {
   const OrderTableTitle({
@@ -14,7 +14,7 @@ class OrderTableTitle extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border.symmetric(
           horizontal: BorderSide(
-            color: MyColor.softBackground,
+            color: AppColors.softBackground,
           ),
         ),
       ),
@@ -43,7 +43,7 @@ class OrderTableTitle extends StatelessWidget {
         label,
         textAlign: TextAlign.center,
         style: const TextStyle(
-          color: MyColor.softBackground,
+          color: AppColors.softBackground,
           fontWeight: FontWeight.bold,
         ),
       ),

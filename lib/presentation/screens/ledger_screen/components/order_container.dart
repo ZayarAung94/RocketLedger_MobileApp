@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constant.dart';
-import '../../widgets/apptext.dart';
-import '../../widgets/message.dart';
+import '../../../../core/constants/app_colors.dart';
 import '../controller/order_controller.dart';
 
 class OrderContainer extends StatefulWidget {
@@ -82,7 +80,7 @@ class _OrderContainerState extends State<OrderContainer> {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
-        color: MyColor.background,
+        color: AppColors.background,
       ),
       child: Column(
         children: [
@@ -132,7 +130,7 @@ class _OrderContainerState extends State<OrderContainer> {
                             ),
                           ),
                           backgroundColor: const WidgetStatePropertyAll(
-                            MyColor.background,
+                            AppColors.background,
                           ),
                         ),
                         onPressed: () {
@@ -146,7 +144,7 @@ class _OrderContainerState extends State<OrderContainer> {
                           btnLabel[index],
                           textScaler: TextScaler.noScaling,
                           style: const TextStyle(
-                            color: MyColor.softBackground,
+                            color: AppColors.softBackground,
                           ),
                         ),
                       );
@@ -158,7 +156,7 @@ class _OrderContainerState extends State<OrderContainer> {
                   children: [
                     keyboardBtn(
                       label: "ထိပ်",
-                      textColor: MyColor.softBackground,
+                      textColor: AppColors.softBackground,
                       isNumber: false,
                       onTap: () {
                         typeValueChange('ထိပ်');
@@ -179,7 +177,7 @@ class _OrderContainerState extends State<OrderContainer> {
                   children: [
                     keyboardBtn(
                       label: "ပိတ်",
-                      textColor: MyColor.softBackground,
+                      textColor: AppColors.softBackground,
                       isNumber: false,
                       onTap: () {
                         typeValueChange('ပိတ်');
@@ -201,7 +199,7 @@ class _OrderContainerState extends State<OrderContainer> {
                   children: [
                     keyboardBtn(
                       label: 'ဘြိတ်',
-                      textColor: MyColor.softBackground,
+                      textColor: AppColors.softBackground,
                       isNumber: false,
                       onTap: () {
                         typeValueChange('ဘြိတ်');
@@ -222,7 +220,7 @@ class _OrderContainerState extends State<OrderContainer> {
                   children: [
                     keyboardBtn(
                       label: "ပတ်",
-                      textColor: MyColor.softBackground,
+                      textColor: AppColors.softBackground,
                       isNumber: false,
                       onTap: () {
                         typeValueChange('ပတ်');
@@ -264,13 +262,13 @@ class _OrderContainerState extends State<OrderContainer> {
                   ),
                 ),
                 backgroundColor: const WidgetStatePropertyAll(
-                  MyColor.softBackground,
+                  AppColors.softBackground,
                 ),
               ),
               onPressed: () {
                 orderController.clear();
               },
-              child: const AppText("Add Order!"),
+              child: const Text("Add Order!"),
             ),
           ),
         ),
@@ -283,7 +281,7 @@ class _OrderContainerState extends State<OrderContainer> {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
       height: 1,
-      color: MyColor.backgroundAlt,
+      color: AppColors.backgroundAlt,
     );
   }
 
@@ -304,7 +302,7 @@ class _OrderContainerState extends State<OrderContainer> {
             ),
           ),
           backgroundColor: const WidgetStatePropertyAll(
-            MyColor.background,
+            AppColors.background,
           ),
         ),
         onPressed: isNumber
@@ -344,10 +342,8 @@ class _OrderContainerState extends State<OrderContainer> {
             : onTap,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: small ? 0 : 20.0),
-          child: AppText(
+          child: Text(
             label,
-            color: textColor,
-            fontSize: 14,
           ),
         ),
       ),
@@ -371,9 +367,8 @@ class _OrderContainerState extends State<OrderContainer> {
           },
           autofocus: inputFocus == index,
           decoration: InputDecoration(
-              label: AppText(
+              label: Text(
                 label,
-                color: inputFocus == index ? Colors.white : Colors.grey.shade600,
               ),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
@@ -411,9 +406,9 @@ class _OrderContainerState extends State<OrderContainer> {
 
   addBtnClick() {
     if (amountValue == "0" || amountValue == "") {
-      AppMessage.errorMessage(
-        message: "Order များ မှားယွင်းနေပါသည်။",
-      );
+      // AppMessage.errorMessage(
+      //   message: "Order များ မှားယွင်းနေပါသည်။",
+      // );
     } else {
       orderController.addOrder(
         numberValue,
@@ -449,7 +444,7 @@ class _OrderContainerState extends State<OrderContainer> {
   }
 
   pasteBtnClick() {
-    AppMessage.premiumRequire();
+    // AppMessage.premiumRequire();
   }
 
   nextBtnClick() {
@@ -460,9 +455,9 @@ class _OrderContainerState extends State<OrderContainer> {
             inputFocus++;
           });
         } else {
-          AppMessage.errorMessage(
-            message: "နံပတ်ထည့်သွင်းမှု မှားယွင်းနေပါသည်။ ပြန်လည် စစ်ဆေးပြီး မှန်ကန်စွာထည့်သွင်းပါ။",
-          );
+          // AppMessage.errorMessage(
+          //   message: "နံပတ်ထည့်သွင်းမှု မှားယွင်းနေပါသည်။ ပြန်လည် စစ်ဆေးပြီး မှန်ကန်စွာထည့်သွင်းပါ။",
+          // );
         }
 
         break;
@@ -476,9 +471,9 @@ class _OrderContainerState extends State<OrderContainer> {
             addBtnClick();
           }
         } else {
-          AppMessage.errorMessage(
-            message: "အမောင့် ထည့်သွင်းမှု မှားယွင်းနေပါသည်။ ပြန်လည် စစ်ဆေးပြီး မှန်ကန်စွာထည့်သွင်းပါ။",
-          );
+          // AppMessage.errorMessage(
+          //   message: "အမောင့် ထည့်သွင်းမှု မှားယွင်းနေပါသည်။ ပြန်လည် စစ်ဆေးပြီး မှန်ကန်စွာထည့်သွင်းပါ။",
+          // );
         }
 
         break;

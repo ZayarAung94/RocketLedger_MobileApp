@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constant.dart';
-import '../../widgets/apptext.dart';
-
 class AddOrderTotalResult extends StatelessWidget {
   final String allow;
   final String block;
@@ -23,11 +20,8 @@ class AddOrderTotalResult extends StatelessWidget {
         children: [
           Row(
             children: [
-              const AppText(
+              const Text(
                 'Total Amount :',
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Colors.grey,
               ),
               const SizedBox(width: 10),
               Container(
@@ -38,10 +32,8 @@ class AddOrderTotalResult extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(
-                  child: AppText(
+                  child: Text(
                     allow,
-                    color: Colors.black,
-                    fontSize: 13,
                   ),
                 ),
               ),
@@ -54,20 +46,15 @@ class AddOrderTotalResult extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(
-                  child: AppText(
+                  child: Text(
                     block,
-                    color: Colors.black,
-                    fontSize: 13,
                   ),
                 ),
               ),
             ],
           ),
-          AppText(
+          Text(
             amount,
-            color: MyColor.accent,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
           )
         ],
       ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rocketledger/presentation/screens/ledger_screen/ledger.dart';
+import 'package:rocketledger/presentation/screens/menu_screen/menu.dart';
+import 'package:rocketledger/presentation/screens/vouchers_screen/vouchers.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../home_screen/home.dart';
@@ -16,9 +19,9 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> childScreens = [
     const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
+    const LedgerScreen(),
+    const VouchersScreen(),
+    const MenuScreen(),
   ];
 
   var mainScaffoldKey = GlobalKey<ScaffoldState>();
@@ -33,6 +36,11 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: AppColors.background,
         title: const Text(
           "Rocket Ledger",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: AppColors.accent,
+          ),
         ),
         leading: IconButton(
           onPressed: () => mainScaffoldKey.currentState?.openDrawer(),
@@ -81,7 +89,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icons.edit_note_rounded,
           ),
           myBNBI(
-            label: "History",
+            label: "Vouchers",
             icon: Icons.history,
           ),
           myBNBI(
