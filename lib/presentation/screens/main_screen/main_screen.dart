@@ -39,14 +39,14 @@ class _MainScreenState extends State<MainScreen> {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: AppColors.accent,
+            // color: AppColors.accent,
           ),
         ),
         leading: IconButton(
           onPressed: () => mainScaffoldKey.currentState?.openDrawer(),
           icon: const Icon(
             Icons.menu,
-            color: AppColors.accent,
+            // color: AppColors.accent,
           ),
         ),
         actions: [

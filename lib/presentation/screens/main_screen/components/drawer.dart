@@ -6,15 +6,15 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Drawer(
+    return Drawer(
       child: Column(
         children: [
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           Padding(
-            padding: EdgeInsets.all(25.0),
+            padding: const EdgeInsets.all(25.0),
             child: Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 40,
                   child: Icon(
                     Icons.rocket,
@@ -22,8 +22,8 @@ class AppDrawer extends StatelessWidget {
                     color: AppColors.accent,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Rocket Ledger',
                   style: TextStyle(
                     color: AppColors.primary,
@@ -31,11 +31,47 @@ class AppDrawer extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: 10),
-                Divider(),
+                const SizedBox(height: 10),
+                const Divider(),
+                menuBtn(icon: Icons.group_add, label: "Agent Management"),
+                menuBtn(icon: Icons.person_add_alt, label: "User Management"),
+                menuBtn(icon: Icons.money, label: "Credit Control"),
+                menuBtn(icon: Icons.monetization_on_outlined, label: "Payment Control"),
+                menuBtn(icon: Icons.dashboard, label: "Games History"),
+                const Divider(),
+                menuBtn(icon: Icons.person_2_rounded, label: "Account Settings"),
+                menuBtn(icon: Icons.logout_outlined, label: "Logout"),
+                const Divider(),
+                const Text(
+                  "Version : 1.001 (Beta)",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.blueGrey,
+                  ),
+                ),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget menuBtn({
+    required IconData icon,
+    required String label,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            color: Colors.grey,
+          ),
+          const SizedBox(width: 15),
+          Text(label),
         ],
       ),
     );

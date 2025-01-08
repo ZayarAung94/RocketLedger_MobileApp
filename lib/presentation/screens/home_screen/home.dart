@@ -31,13 +31,13 @@ class HomeScreen extends StatelessWidget {
                   text: const TextSpan(
                     text: "Total Amount : ",
                     style: TextStyle(
-                      fontSize: 18,
                       fontWeight: FontWeight.w200,
                     ),
                     children: [
                       TextSpan(
-                        text: "100000",
+                        text: "100,000,000",
                         style: TextStyle(
+                          fontSize: 18,
                           color: AppColors.accent,
                           fontWeight: FontWeight.bold,
                         ),
@@ -48,16 +48,24 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 dataRow(
                   label1: "Active Number :",
-                  label2: "End :",
+                  label2: "Refreshed at :",
                   value1: "89",
-                  value2: "11:30 am",
+                  value2: "100 s",
                 ),
-                const SizedBox(height: 10),
               ],
             ),
           ),
         ),
-        const SizedBox(height: 20),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Sort By : Amount Decreasing"),
+              Icon(Icons.dashboard_outlined),
+            ],
+          ),
+        ),
         Expanded(
           child: ListView.builder(
             itemCount: 100,
