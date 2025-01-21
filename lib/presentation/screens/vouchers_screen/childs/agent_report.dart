@@ -61,25 +61,25 @@ class AgentReport extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    dataRow(title: 'title', value: 'value'),
+                    dataRow(title: 'Active Num', value: '50'),
                     const SizedBox(width: 10),
-                    dataRow(title: 'title', value: 'value'),
+                    dataRow(title: 'Average', value: '10,000'),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    dataRow(title: 'title', value: 'value'),
+                    dataRow(title: 'Min Amount', value: '100'),
                     const SizedBox(width: 10),
-                    dataRow(title: 'title', value: 'value'),
+                    dataRow(title: 'Max Amount', value: '20,000'),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    dataRow(title: 'title', value: 'value'),
+                    dataRow(title: 'Commission (%)', value: '7'),
                     const SizedBox(width: 10),
-                    dataRow(title: 'title', value: 'value'),
+                    dataRow(title: 'Commission (K)', value: '100,000'),
                   ],
                 ),
               ],

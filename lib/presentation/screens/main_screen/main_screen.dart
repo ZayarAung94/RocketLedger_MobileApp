@@ -4,6 +4,7 @@ import 'package:rocketledger/presentation/screens/menu_screen/menu.dart';
 import 'package:rocketledger/presentation/screens/vouchers_screen/vouchers.dart';
 
 import '../../../core/constants/app_colors.dart';
+import '../../widgets/app_message.dart';
 import '../home_screen/home.dart';
 import 'components/drawer.dart';
 
@@ -33,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       key: mainScaffoldKey,
       appBar: AppBar(
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.backgroundAlt,
         title: const Text(
           "Rocket Ledger",
           style: TextStyle(
@@ -51,14 +52,18 @@ class _MainScreenState extends State<MainScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              AppMessage.underDevelopment();
+            },
             icon: const Icon(
               Icons.notifications_active_outlined,
               color: Colors.grey,
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              AppMessage.underDevelopment();
+            },
             icon: const Icon(
               Icons.message_outlined,
               color: Colors.grey,
@@ -107,7 +112,7 @@ class _MainScreenState extends State<MainScreen> {
     required String label,
   }) {
     return BottomNavigationBarItem(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.backgroundAlt,
       icon: Icon(
         icon,
       ),
