@@ -31,13 +31,22 @@ class AppMessage {
   static underDevelopment() {
     if (!Get.isSnackbarOpen) {
       Get.snackbar(
-        'Under Development',
-        'This feature is under development.',
+        'Opps!!! Under Development',
+        'ယခုလုပ်ဆောင်မှုမျာသည် စမ်းသတ်ပြုပြင်နေဆဲ ဖြစ်သည်။ အသုံးပြု၍ မရနိုင်သေးပါ။',
         icon: const Icon(Icons.warning),
         margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         duration: const Duration(milliseconds: 3000),
         backgroundColor: Colors.blue.withOpacity(0.8),
         colorText: Colors.white,
+        mainButton: TextButton(
+          onPressed: () {
+            Get.back();
+          },
+          child: const Text(
+            'Close',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       );
     }
   }
@@ -46,7 +55,7 @@ class AppMessage {
     if (!Get.isSnackbarOpen) {
       Get.snackbar(
         'Opps!!! You are not allowed',
-        "You can't use this Function with your account role.",
+        "သင့်အနေနဲ့ ယခုလုပ်ဆောင်မှုကို လုပ်ဆောင်ခွင့်မရှိပါ။",
         icon: const Icon(
           Icons.warning,
           color: AppColors.background,
@@ -55,6 +64,15 @@ class AppMessage {
         duration: const Duration(milliseconds: 3000),
         backgroundColor: Colors.amber.shade900.withOpacity(0.7),
         colorText: Colors.black,
+        mainButton: TextButton(
+          onPressed: () {
+            Get.back();
+          },
+          child: const Text(
+            'Close',
+            style: TextStyle(color: AppColors.background),
+          ),
+        ),
       );
     }
   }

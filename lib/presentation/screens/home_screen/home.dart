@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rocketledger/core/constants/app_colors.dart';
+import 'package:rocketledger/presentation/widgets/order_list_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,8 +30,9 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 RichText(
                   text: const TextSpan(
-                    text: "Total Amount : ",
+                    text: "Total : ",
                     style: TextStyle(
+                      // fontFamily: "MyanmarSabae",
                       fontWeight: FontWeight.w200,
                     ),
                     children: [
@@ -39,6 +41,7 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           color: AppColors.accent,
+                          fontFamily: "MyanmarSabae",
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -47,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 dataRow(
-                  label1: "Active Number :",
+                  label1: "ထိုးကွက်ပေါင်း :",
                   label2: "Refreshed at :",
                   value1: "89",
                   value2: "100 s",
@@ -56,63 +59,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Sort By : Amount Decreasing"),
-              Icon(Icons.dashboard_outlined),
-            ],
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: 100,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 2.0),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        child: Text(
-                          "$index",
-                          style: const TextStyle(
-                            fontSize: 21,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              NumberFormat('#,##0').format(284048),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.accent,
-                              ),
-                            ),
-                            const LinearProgressIndicator(
-                              value: 0.8,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        )
+        const OrderListView(),
       ],
     );
   }
@@ -147,12 +94,14 @@ class HomeScreen extends StatelessWidget {
             label,
             style: const TextStyle(
               fontWeight: FontWeight.w200,
+              fontFamily: "MyanmarSabae",
             ),
           ),
           Text(
             value,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
+              fontFamily: "MyanmarSabae",
             ),
           ),
         ],

@@ -14,7 +14,7 @@ class AgentDetail extends StatefulWidget {
 }
 
 class _AgentDetailState extends State<AgentDetail> {
-  String activeTab = "Summary";
+  String activeTab = "အနှစ်ချုပ်";
   int tabIndex = 0;
   List<Widget> tabs = [
     const AgentSummary(),
@@ -47,21 +47,21 @@ class _AgentDetailState extends State<AgentDetail> {
               child: Row(
                 children: [
                   tabBtn(
-                    title: "Summary",
+                    title: "အနှစ်ချုပ်",
                     icon: Icons.data_usage,
                     onTap: () {
                       setState(() {
-                        activeTab = "Summary";
+                        activeTab = "အနှစ်ချုပ်";
                         tabIndex = 0;
                       });
                     },
                   ),
                   tabBtn(
-                    title: "Payment",
+                    title: "ငွေလွှဲများ",
                     icon: Icons.payment,
                     onTap: () {
                       setState(() {
-                        activeTab = "Payment";
+                        activeTab = "ငွေလွှဲများ";
                         tabIndex = 1;
                       });
                     },
@@ -77,11 +77,11 @@ class _AgentDetailState extends State<AgentDetail> {
                     },
                   ),
                   tabBtn(
-                    title: "Profile",
+                    title: "အပြင်အဆင်",
                     icon: Icons.person,
                     onTap: () {
                       setState(() {
-                        activeTab = "Profile";
+                        activeTab = "အပြင်အဆင်";
                         tabIndex = 3;
                       });
                     },

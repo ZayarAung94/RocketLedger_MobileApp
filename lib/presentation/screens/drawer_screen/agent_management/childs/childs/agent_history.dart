@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rocketledger/core/constants/app_colors.dart';
+import 'package:rocketledger/presentation/widgets/data_row.dart';
+
+import 'history_childs/agent_order.dart';
 
 class AgentHistory extends StatelessWidget {
   const AgentHistory({super.key});
@@ -9,98 +13,78 @@ class AgentHistory extends StatelessWidget {
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
-        return Card(
-          margin: const EdgeInsets.all(5),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-            child: Column(
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "12-01-2025",
-                          style: TextStyle(
-                            color: Colors.grey,
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            Get.to(() => const AgentOrderPage());
+          },
+          child: const Card(
+            margin: EdgeInsets.all(5),
+            color: AppColors.background,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "12-01-2025",
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "(Morning)",
+                          Text(
+                            "(Morning)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      CircleAvatar(
+                        backgroundColor: AppColors.primary,
+                        child: Text(
+                          "88",
                           style: TextStyle(
-                            fontSize: 15,
                             fontWeight: FontWeight.bold,
+                            color: AppColors.background,
                           ),
-                        ),
-                      ],
-                    ),
-                    CircleAvatar(
-                      backgroundColor: AppColors.primary,
-                      child: Text(
-                        "88",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.background,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const Divider(),
-                dataRow(
-                  label: "Total Sales",
-                  value: "1,000,000 K",
-                ),
-                dataRow(
-                  label: "Total Commission",
-                  value: "80,000 K",
-                ),
-                dataRow(
-                  label: "Lucky Bet Amount",
-                  value: "20,000 K",
-                ),
-                dataRow(
-                  label: "Payout Amount",
-                  value: "800,000 K",
-                ),
-                dataRow(
-                  label: "Profit/Loss",
-                  value: "90,000 K",
-                ),
-              ],
+                    ],
+                  ),
+                  Divider(),
+                  AppDataRow(
+                    label: "ရောင်းအား",
+                    value: "1,000,000 K",
+                  ),
+                  AppDataRow(
+                    label: "ကော်မရှင်",
+                    value: "80,000 K",
+                  ),
+                  AppDataRow(
+                    label: "ပေါက်ငွေ",
+                    value: "20,000 K",
+                  ),
+                  AppDataRow(
+                    label: "ရော်ငွေ",
+                    value: "800,000 K",
+                  ),
+                  AppDataRow(
+                    label: "အမြတ်/အရှုံး",
+                    value: "90,000 K",
+                  ),
+                ],
+              ),
             ),
           ),
         );
       },
-    );
-  }
-
-  Widget dataRow({
-    required String label,
-    required String value,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "$label : ",
-            style: const TextStyle(
-              color: Colors.grey,
-            ),
-          ),
-          Text(
-            value,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

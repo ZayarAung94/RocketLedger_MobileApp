@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rocketledger/presentation/screens/drawer_screen/agent_management/childs/childs/payment_childs/agent_payment_done.dart';
+import 'package:rocketledger/presentation/screens/drawer_screen/agent_management/childs/childs/payment_childs/agent_payment_pending.dart';
 
 import '../../../../../../core/constants/app_colors.dart';
-import '../../../../vouchers_screen/childs/agent_report.dart';
-import '../../../../vouchers_screen/childs/vouchers.dart';
 
 class AgentPayment extends StatefulWidget {
   const AgentPayment({super.key});
@@ -14,8 +14,8 @@ class AgentPayment extends StatefulWidget {
 class _AgentPaymentState extends State<AgentPayment> {
   int tabIndex = 0;
   List<Widget> pages = [
-    const Vouchers(),
-    const AgentReport(),
+    const AgentPaymentPending(),
+    const AgentPaymentDone(),
   ];
 
   @override
@@ -29,10 +29,10 @@ class _AgentPaymentState extends State<AgentPayment> {
               value: 0,
               label: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
-                child: Text("Pending"),
+                child: Text("လွှဲရန်"),
               ),
             ),
-            ButtonSegment(value: 1, label: Text("History")),
+            ButtonSegment(value: 1, label: Text("လွှဲပြီး")),
           ],
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.resolveWith<Color>(

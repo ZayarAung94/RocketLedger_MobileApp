@@ -40,7 +40,7 @@ class AppDrawer extends StatelessWidget {
                 const Divider(),
                 menuBtn(
                   icon: Icons.group_add,
-                  label: "Agent Management",
+                  label: "အေးဂျင့်များအား စီမံခြင်း",
                   onTap: () {
                     Get.back();
                     Get.to(() => const AgentManageScreen());
@@ -48,7 +48,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 menuBtn(
                   icon: Icons.person_add_alt,
-                  label: "User Management",
+                  label: "ထိုးသားများအား စီမံခြင်း",
                   onTap: () {
                     Get.back();
                     AppMessage.underDevelopment();
@@ -56,7 +56,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 menuBtn(
                   icon: Icons.money,
-                  label: "Credit Control",
+                  label: "ချေးငွေများအား စီမံခြင်း",
                   onTap: () {
                     Get.back();
                     AppMessage.underDevelopment();
@@ -64,15 +64,15 @@ class AppDrawer extends StatelessWidget {
                 ),
                 menuBtn(
                   icon: Icons.monetization_on_outlined,
-                  label: "Payment Control",
+                  label: "ငွေပေး ငွေယူများ",
                   onTap: () {
                     Get.back();
                     Get.to(() => const AgentManageScreen());
                   },
                 ),
                 menuBtn(
-                  icon: Icons.dashboard,
-                  label: "Games History",
+                  icon: Icons.dashboard_outlined,
+                  label: "ပြီးဆုံးပြီးသော ပွဲစဉ်များ",
                   onTap: () {
                     Get.back();
                     Get.to(() => const GameHistory());
@@ -81,7 +81,7 @@ class AppDrawer extends StatelessWidget {
                 const Divider(),
                 menuBtn(
                   icon: Icons.person_2_rounded,
-                  label: "Account Settings",
+                  label: "အကောင့် ပြင်ဆင်ခြင်း",
                   onTap: () {
                     Get.back();
                     Get.to(() => const AccountSetting());

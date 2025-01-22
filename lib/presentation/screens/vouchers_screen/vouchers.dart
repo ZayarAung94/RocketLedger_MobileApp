@@ -26,8 +26,8 @@ class _VouchersScreenState extends State<VouchersScreen> {
         ),
         SegmentedButton(
           segments: const [
-            ButtonSegment(value: 0, label: Text("Vouchers")),
-            ButtonSegment(value: 1, label: Text("Agent's Reports")),
+            ButtonSegment(value: 0, label: Text("ဘောင်ချာများ")),
+            ButtonSegment(value: 1, label: Text("အေးဂျင့်များ")),
           ],
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.resolveWith<Color>(

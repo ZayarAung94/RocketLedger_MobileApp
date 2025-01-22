@@ -18,9 +18,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/splash',
       getPages: Pages.getPages,
-      theme: ThemeData.dark(
-          // useMaterial3: false,
-          ),
+      theme: ThemeData.dark().copyWith(
+        textTheme: ThemeData.dark().textTheme.apply(
+              fontFamily: "MyanmarSabae",
+            ),
+        primaryTextTheme: ThemeData.dark().textTheme.apply(
+              fontFamily: "MyanmarSabae",
+            ),
+      ),
       builder: (BuildContext context, Widget? child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
