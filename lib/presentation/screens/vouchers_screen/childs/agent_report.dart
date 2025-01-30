@@ -13,7 +13,7 @@ class AgentReport extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () {
+          onLongPress: () {
             Get.to(() => const AgentOrderPage());
           },
           child: Card(

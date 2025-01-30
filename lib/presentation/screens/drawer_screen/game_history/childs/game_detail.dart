@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:rocketledger/presentation/screens/drawer_screen/agent_management/childs/childs/agent_payment.dart';
-import 'package:rocketledger/presentation/screens/drawer_screen/agent_management/childs/childs/agent_profile.dart';
-import 'package:rocketledger/presentation/screens/drawer_screen/agent_management/childs/childs/agent_summary.dart';
+import 'package:rocketledger/core/helpers/text_style.dart';
 
 import '../../../../../core/constants/app_colors.dart';
-import 'childs/agent_history.dart';
+import '../../agent_management/childs/childs/agent_history.dart';
+import '../../agent_management/childs/childs/agent_payment.dart';
+import '../../agent_management/childs/childs/agent_profile.dart';
+import '../../agent_management/childs/childs/agent_summary.dart';
 
-class AgentDetail extends StatefulWidget {
-  const AgentDetail({super.key});
+class GameDetail extends StatefulWidget {
+  const GameDetail({super.key});
 
   @override
-  State<AgentDetail> createState() => _AgentDetailState();
+  State<GameDetail> createState() => _GameDetailState();
 }
 
-class _AgentDetailState extends State<AgentDetail> {
+class _GameDetailState extends State<GameDetail> {
   String activeTab = "အနှစ်ချုပ်";
   int tabIndex = 0;
   List<Widget> tabs = [
@@ -22,19 +23,14 @@ class _AgentDetailState extends State<AgentDetail> {
     const AgentHistory(),
     const AgentProfile(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.backgroundAlt,
-        title: const Text(
-          "Agent's Data",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            // color: AppColors.accent,
-          ),
+        title: Text(
+          "Game History",
+          style: AppTextStyle.appBar(),
         ),
       ),
       body: Column(
@@ -57,31 +53,31 @@ class _AgentDetailState extends State<AgentDetail> {
                     },
                   ),
                   tabBtn(
-                    title: "ငွေလွှဲများ",
-                    icon: Icons.payment,
+                    title: "ရောင်းကွက်",
+                    icon: Icons.person,
                     onTap: () {
                       setState(() {
-                        activeTab = "ငွေလွှဲများ";
+                        activeTab = "ရောင်းကွက်";
                         tabIndex = 1;
                       });
                     },
                   ),
                   tabBtn(
-                    title: "ပွဲစဉ်များ",
-                    icon: Icons.history,
+                    title: "ဘောက်ချာ",
+                    icon: Icons.payment,
                     onTap: () {
                       setState(() {
-                        activeTab = "ပွဲစဉ်များ";
+                        activeTab = "ဘောက်ချာ";
                         tabIndex = 2;
                       });
                     },
                   ),
                   tabBtn(
-                    title: "အပြင်အဆင်",
-                    icon: Icons.person,
+                    title: "ငွေလွှဲများ",
+                    icon: Icons.history,
                     onTap: () {
                       setState(() {
-                        activeTab = "အပြင်အဆင်";
+                        activeTab = "ငွေလွှဲများ";
                         tabIndex = 3;
                       });
                     },
@@ -90,9 +86,6 @@ class _AgentDetailState extends State<AgentDetail> {
               ),
             ),
           ),
-          Expanded(
-            child: tabs[tabIndex],
-          )
         ],
       ),
     );

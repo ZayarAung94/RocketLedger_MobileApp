@@ -43,6 +43,28 @@ class _AgentProfileState extends State<AgentProfile> {
             onTap: () {},
           ),
           const SizedBox(height: 10),
+          profileTitle("Agent's Payments"),
+          dataCard(
+            title: "KBZPay Name",
+            value: "Account Name",
+            onTap: () {},
+          ),
+          dataCard(
+            title: "KBZPay Number",
+            value: "0912345678",
+            onTap: () {},
+          ),
+          dataCard(
+            title: "WavePay Name",
+            value: "Account Name",
+            onTap: () {},
+          ),
+          dataCard(
+            title: "WavePay Number",
+            value: "0912345678",
+            onTap: () {},
+          ),
+          const SizedBox(height: 10),
           profileTitle("Agent's Settings"),
           dataCard(
             title: "Luck Odds",

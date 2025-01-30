@@ -51,9 +51,9 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 dataRow(
                   label1: "ထိုးကွက်ပေါင်း :",
-                  label2: "Refreshed at :",
+                  label2: "ကော်မရှင် :",
                   value1: "89",
-                  value2: "100 s",
+                  value2: "1,000,000 Ks",
                 ),
               ],
             ),

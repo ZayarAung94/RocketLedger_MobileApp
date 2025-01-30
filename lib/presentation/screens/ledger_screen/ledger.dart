@@ -16,7 +16,7 @@ class LedgerScreen extends StatelessWidget {
     var orderController = Get.put(OrderController());
 
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: GetBuilder<OrderController>(
         builder: (context) {
           return Column(

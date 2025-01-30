@@ -47,7 +47,31 @@ class AgentManageScreen extends StatelessWidget {
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Agent's Name"),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: AppColors.softBackground,
+                          child: Icon(
+                            Icons.person,
+                            size: 33,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Agent's Name"),
+                            Text(
+                              "agentname.sdk@gmail.com",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                     Text("12-01-2025"),
                   ],
                 ),

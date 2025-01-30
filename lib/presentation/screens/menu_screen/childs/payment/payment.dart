@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rocketledger/core/constants/app_colors.dart';
 import 'package:rocketledger/presentation/screens/menu_screen/childs/payment/childs/income.dart';
-import 'package:rocketledger/presentation/screens/menu_screen/childs/payment/childs/net.dart';
 import 'package:rocketledger/presentation/screens/menu_screen/childs/payment/childs/outcome.dart';
+
+import '../../../../../core/helpers/button_style.dart';
 
 class Payment extends StatefulWidget {
   const Payment({super.key});
@@ -14,7 +15,6 @@ class Payment extends StatefulWidget {
 class _PaymentState extends State<Payment> {
   int tabIndex = 0;
   List<Widget> pages = [
-    const NetTransaction(),
     const IncomeTransactions(),
     const OutcomeTransactions(),
   ];
@@ -33,28 +33,15 @@ class _PaymentState extends State<Payment> {
           ),
           SegmentedButton(
             segments: const [
-              ButtonSegment(value: 0, label: Text("Net")),
-              ButtonSegment(value: 1, label: Text("Income")),
-              ButtonSegment(value: 2, label: Text("Outcome")),
+              ButtonSegment(
+                  value: 0,
+                  label: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text("ဝင်ငွေ"),
+                  )),
+              ButtonSegment(value: 1, label: Text("ထွက်ငွေ")),
             ],
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                (Set<WidgetState> states) {
-                  if (states.contains(WidgetState.selected)) {
-                    return AppColors.accent; // Selected segment color
-                  }
-                  return AppColors.background; // Unselected segment color
-                },
-              ),
-              foregroundColor: WidgetStateProperty.resolveWith<Color>(
-                (Set<WidgetState> states) {
-                  if (states.contains(WidgetState.selected)) {
-                    return Colors.black; // Selected text color
-                  }
-                  return Colors.white; // Unselected text color
-                },
-              ),
-            ),
+            style: ButtonStyles.segementBtnStyle(),
             selected: <int>{tabIndex},
             showSelectedIcon: false,
             onSelectionChanged: (Set<int> value) {
