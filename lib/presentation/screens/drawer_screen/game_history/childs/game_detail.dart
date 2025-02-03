@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rocketledger/core/helpers/text_style.dart';
+import 'package:rocketledger/presentation/screens/vouchers_screen/vouchers.dart';
+import 'package:rocketledger/presentation/widgets/order_list_view.dart';
 
 import '../../../../../core/constants/app_colors.dart';
-import '../../agent_management/childs/childs/agent_history.dart';
-import '../../agent_management/childs/childs/agent_payment.dart';
-import '../../agent_management/childs/childs/agent_profile.dart';
+import '../../../menu_screen/childs/payment/components/game_payment.dart';
 import '../../agent_management/childs/childs/agent_summary.dart';
 
 class GameDetail extends StatefulWidget {
@@ -19,9 +19,9 @@ class _GameDetailState extends State<GameDetail> {
   int tabIndex = 0;
   List<Widget> tabs = [
     const AgentSummary(),
-    const AgentPayment(),
-    const AgentHistory(),
-    const AgentProfile(),
+    const OrderListView(),
+    const VouchersScreen(),
+    const GamePayment(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -85,6 +85,9 @@ class _GameDetailState extends State<GameDetail> {
                 ],
               ),
             ),
+          ),
+          Expanded(
+            child: tabs[tabIndex],
           ),
         ],
       ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rocketledger/core/constants/app_colors.dart';
+import 'package:rocketledger/core/helpers/dialog_helper.dart';
 import 'package:rocketledger/presentation/screens/drawer_screen/account_setting/account_setting.dart';
 import 'package:rocketledger/presentation/screens/drawer_screen/agent_management/agent_manage.dart';
+import 'package:rocketledger/presentation/screens/drawer_screen/app_setting/app_setting.dart';
 import 'package:rocketledger/presentation/screens/drawer_screen/game_history/game_history.dart';
-import 'package:rocketledger/presentation/widgets/app_message.dart';
+import 'package:rocketledger/presentation/screens/drawer_screen/lessons/lessons.dart';
 
 import '../../drawer_screen/payment_history/payment_manage.dart';
 
@@ -53,16 +55,14 @@ class AppDrawer extends StatelessWidget {
                     icon: Icons.person_add_alt,
                     label: "ထိုးသားများအား စီမံခြင်း",
                     onTap: () {
-                      Get.back();
-                      AppMessage.underDevelopment();
+                      Get.dialog(DialogHelper.underDevelopment());
                     },
                   ),
                   menuBtn(
                     icon: Icons.money,
                     label: "ချေးငွေများအား စီမံခြင်း",
                     onTap: () {
-                      Get.back();
-                      AppMessage.underDevelopment();
+                      Get.dialog(DialogHelper.underDevelopment());
                     },
                   ),
                   menuBtn(
@@ -90,10 +90,36 @@ class AppDrawer extends StatelessWidget {
                       Get.to(() => const AccountSetting());
                     },
                   ),
-                  menuBtn(icon: Icons.app_settings_alt_outlined, label: "ဆော့ဝဲ အပြင်အဆင်"),
-                  menuBtn(icon: Icons.logout_outlined, label: "Logout"),
+                  menuBtn(
+                    icon: Icons.app_settings_alt_outlined,
+                    label: "ဆော့ဝဲ အပြင်အဆင်",
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => const AppSetting());
+                    },
+                  ),
+                  menuBtn(
+                    icon: Icons.logout_outlined,
+                    label: "Logout",
+                    onTap: () {
+                      Get.dialog(
+                        DialogHelper.comfirmation(
+                          title: "Confirm Logout !",
+                          bodyText: "Are you sure to Logout?",
+                          okText: "Logout",
+                        ),
+                        barrierDismissible: false,
+                      );
+                    },
+                  ),
                   const Divider(),
-                  menuBtn(icon: Icons.play_circle_outline_rounded, label: "သင်ခန်းစာများ"),
+                  menuBtn(
+                    icon: Icons.play_circle_outline_rounded,
+                    label: "သင်ခန်းစာများ",
+                    onTap: () {
+                      Get.to(() => const LessonScreen());
+                    },
+                  ),
                   menuBtn(icon: Icons.feedback_outlined, label: "Feedback"),
                   menuBtn(icon: Icons.message_outlined, label: "Contact Us"),
                   const Divider(),

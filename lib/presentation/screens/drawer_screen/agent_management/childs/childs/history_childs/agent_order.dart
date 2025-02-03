@@ -31,7 +31,9 @@ class AgentOrderPage extends StatelessWidget {
               ),
             ),
           ),
-          OrderListView(),
+          Expanded(
+            child: OrderListView(),
+          ),
         ],
       ),
     );

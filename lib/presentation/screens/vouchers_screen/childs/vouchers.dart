@@ -14,7 +14,7 @@ class Vouchers extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onLongPress: () {
+          onTap: () {
             Get.to(() => const VoucherPage());
           },
           child: Card(

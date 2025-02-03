@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rocketledger/core/helpers/dialog_helper.dart';
 import 'package:rocketledger/presentation/screens/ledger_screen/ledger.dart';
 import 'package:rocketledger/presentation/screens/menu_screen/menu.dart';
 import 'package:rocketledger/presentation/screens/vouchers_screen/vouchers.dart';
@@ -54,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              AppMessage.underDevelopment();
+              Get.dialog(DialogHelper.underDevelopment());
             },
             icon: const Icon(
               Icons.notifications_active_outlined,

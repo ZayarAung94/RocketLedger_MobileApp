@@ -59,7 +59,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        const OrderListView(),
+        const Expanded(
+          child: OrderListView(),
+        ),
       ],
     );
   }
