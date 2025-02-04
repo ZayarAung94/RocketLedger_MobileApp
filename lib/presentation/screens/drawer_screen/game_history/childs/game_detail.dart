@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rocketledger/core/helpers/text_style.dart';
+import 'package:rocketledger/presentation/screens/menu_screen/childs/game_summary/components/game_summary_widget.dart';
 import 'package:rocketledger/presentation/screens/vouchers_screen/vouchers.dart';
 import 'package:rocketledger/presentation/widgets/order_list_view.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../menu_screen/childs/payment/components/game_payment.dart';
-import '../../agent_management/childs/childs/agent_summary.dart';
 
 class GameDetail extends StatefulWidget {
   const GameDetail({super.key});
@@ -18,7 +18,7 @@ class _GameDetailState extends State<GameDetail> {
   String activeTab = "အနှစ်ချုပ်";
   int tabIndex = 0;
   List<Widget> tabs = [
-    const AgentSummary(),
+    const GameSummaryWidget(),
     const OrderListView(),
     const VouchersScreen(),
     const GamePayment(),

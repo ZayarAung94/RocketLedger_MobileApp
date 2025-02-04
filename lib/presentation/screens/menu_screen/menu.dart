@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rocketledger/presentation/screens/menu_screen/components/close_control.dart';
+import 'package:rocketledger/presentation/screens/menu_screen/components/excude_amount_control.dart';
+import 'package:rocketledger/presentation/screens/menu_screen/components/limit_control.dart';
 import 'package:rocketledger/presentation/widgets/app_message.dart';
 
 import '../../components/setting_btn.dart';
@@ -34,21 +37,33 @@ class MenuScreen extends StatelessWidget {
             label: "ထိုးငွေ ကန့်သတ်ခြင်း",
             icon: Icons.list_alt,
             onTap: () {
-              AppMessage.underDevelopment();
+              Get.bottomSheet(
+                const LimitControl(),
+                isScrollControlled: true,
+                isDismissible: false,
+              );
             },
           ),
           SettingBtn(
             label: "ပိတ်ကွက် စီမံခြင်း",
             icon: Icons.block,
             onTap: () {
-              AppMessage.underDevelopment();
+              Get.bottomSheet(
+                const CloseControl(),
+                isScrollControlled: true,
+                isDismissible: false,
+              );
             },
           ),
           SettingBtn(
             label: "ခေါင်ချိုး စီမံခြင်း",
             icon: Icons.arrow_outward_rounded,
             onTap: () {
-              AppMessage.underDevelopment();
+              Get.bottomSheet(
+                const ExcudeAmountControl(),
+                isScrollControlled: true,
+                isDismissible: false,
+              );
             },
           ),
           title("Reports"),
