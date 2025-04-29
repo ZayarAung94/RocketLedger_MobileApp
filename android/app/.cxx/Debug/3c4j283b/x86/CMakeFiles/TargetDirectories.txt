@@ -1,0 +1,2 @@
+/Users/za/Documents/Coding/FlutterPj/RocketLedger/rocketledger/android/app/.cxx/Debug/3c4j283b/x86/CMakeFiles/edit_cache.dir
+/Users/za/Documents/Coding/FlutterPj/RocketLedger/rocketledger/android/app/.cxx/Debug/3c4j283b/x86/CMakeFiles/rebuild_cache.dir

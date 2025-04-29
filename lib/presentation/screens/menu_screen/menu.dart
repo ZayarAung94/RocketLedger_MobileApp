@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rocketledger/presentation/screens/menu_screen/components/close_control.dart';
-import 'package:rocketledger/presentation/screens/menu_screen/components/excude_amount_control.dart';
-import 'package:rocketledger/presentation/screens/menu_screen/components/limit_control.dart';
-import 'package:rocketledger/presentation/widgets/app_message.dart';
+import 'package:rocketledger/presentation/screens/menu_screen/childs/close_control.dart';
+import 'package:rocketledger/presentation/screens/menu_screen/childs/excude_amount_control/excude_amount_control.dart';
+import 'package:rocketledger/presentation/screens/menu_screen/childs/limit_control.dart';
 
 import '../../components/setting_btn.dart';
+import '../../widgets/components/dialogs/lucky_num_dialog.dart';
 import 'childs/game_summary/game_summary.dart';
 import 'childs/payment/payment.dart';
 
@@ -20,51 +20,45 @@ class MenuScreen extends StatelessWidget {
         children: [
           const Card(
             child: SizedBox(
-              height: 200,
+              height: 150,
               width: double.infinity,
             ),
           ),
           title("Game Control"),
           SettingBtn(
-            label: "New Game",
-            icon: Icons.add_box_outlined,
+            label: "ပေါက်ကွက်",
+            icon: Icons.star_border,
+            value: "NA",
             onTap: () {
-              AppMessage.accessDeny();
+              Get.dialog(
+                const LuckyNumDialog(),
+              );
             },
           ),
-          const SettingBtn(label: "Close Game", icon: Icons.exit_to_app),
           SettingBtn(
             label: "ထိုးငွေ ကန့်သတ်ခြင်း",
             icon: Icons.list_alt,
             onTap: () {
-              Get.bottomSheet(
-                const LimitControl(),
-                isScrollControlled: true,
-                isDismissible: false,
-              );
+              Get.to(() => const LimitControl());
             },
           ),
           SettingBtn(
             label: "ပိတ်ကွက် စီမံခြင်း",
             icon: Icons.block,
             onTap: () {
-              Get.bottomSheet(
-                const CloseControl(),
-                isScrollControlled: true,
-                isDismissible: false,
-              );
+              Get.to(() => const CloseControl());
             },
           ),
           SettingBtn(
             label: "ခေါင်ချိုး စီမံခြင်း",
             icon: Icons.arrow_outward_rounded,
             onTap: () {
-              Get.bottomSheet(
-                const ExcudeAmountControl(),
-                isScrollControlled: true,
-                isDismissible: false,
-              );
+              Get.to(() => const ExcudeAmountControl());
             },
+          ),
+          const SettingBtn(
+            label: "Close Game",
+            icon: Icons.exit_to_app_outlined,
           ),
           title("Reports"),
           SettingBtn(
@@ -75,7 +69,7 @@ class MenuScreen extends StatelessWidget {
             },
           ),
           SettingBtn(
-            label: "ငွေပး ငွေယူများ",
+            label: "ငွေပေး ငွေယူများ",
             icon: Icons.payments,
             onTap: () {
               Get.to(() => const Payment());

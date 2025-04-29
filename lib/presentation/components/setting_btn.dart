@@ -7,6 +7,9 @@ class SettingBtn extends StatelessWidget {
   final IconData icon;
   final void Function()? onTap;
   final String? value;
+  final bool? isSwitch;
+  final void Function(bool)? switchTap;
+
   final String? description;
   const SettingBtn({
     super.key,
@@ -14,6 +17,8 @@ class SettingBtn extends StatelessWidget {
     required this.icon,
     this.onTap,
     this.value,
+    this.isSwitch,
+    this.switchTap,
     this.description,
   });
 
@@ -27,7 +32,7 @@ class SettingBtn extends StatelessWidget {
         margin: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
         color: AppColors.background,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 10),
           width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,13 +64,27 @@ class SettingBtn extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Text(value ?? ""),
-                  const SizedBox(width: 10),
-                  Icon(Icons.chevron_right_rounded, color: onTap == null ? Colors.grey.shade800 : Colors.white),
-                ],
-              ),
+              if (isSwitch != null)
+                SizedBox(
+                  height: 25,
+                  child: Transform.scale(
+                    scale: 0.7,
+                    child: Switch(
+                      value: isSwitch!,
+                      onChanged: switchTap,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      activeColor: AppColors.info,
+                    ),
+                  ),
+                ),
+              if (isSwitch == null)
+                Row(
+                  children: [
+                    Text(value ?? ""),
+                    const SizedBox(width: 10),
+                    Icon(Icons.chevron_right_rounded, color: onTap == null ? Colors.grey.shade800 : Colors.white),
+                  ],
+                ),
             ],
           ),
         ),

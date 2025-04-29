@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rocketledger/core/constants/app_colors.dart';
 import 'package:rocketledger/presentation/screens/drawer_screen/agent_management/childs/childs/history_childs/agent_order.dart';
+import 'package:rocketledger/presentation/widgets/data_row.dart';
 
 class AgentReport extends StatelessWidget {
   const AgentReport({super.key});
@@ -65,56 +66,15 @@ class AgentReport extends StatelessWidget {
                     ],
                   ),
                   const Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      dataRow(title: 'ထိုးကွက်', value: '50'),
-                      const SizedBox(width: 10),
-                      dataRow(title: 'ပျမ်းမျှ ထိုးငွေ', value: '10,000'),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      dataRow(title: 'အနည်းဆုံး ထိုးငွေ', value: '100'),
-                      const SizedBox(width: 10),
-                      dataRow(title: 'အများဆုံး ထိုးငွေ', value: '2,000,000'),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      dataRow(title: 'ကော်မရှင် (%)', value: '7'),
-                      const SizedBox(width: 10),
-                      dataRow(title: 'ကော် (K)', value: '100,000'),
-                    ],
-                  ),
+                  const AppDataRow(label: 'ထိုးကွက်', value: '79'),
+                  const AppDataRow(label: 'စုစုပေါင်းရောင်းအား', value: '10,000,000'),
+                  const AppDataRow(label: 'ကော်မရှင်း (%)', value: '10'),
                 ],
               ),
             ),
           ),
         );
       },
-    );
-  }
-
-  Widget dataRow({required String title, required String value}) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                color: Colors.grey,
-              ),
-            ),
-            Text(value),
-          ],
-        ),
-      ),
     );
   }
 }

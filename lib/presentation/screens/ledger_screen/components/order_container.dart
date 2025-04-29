@@ -1,79 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rocketledger/presentation/screens/ledger_screen/components/order_container_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../controller/order_controller.dart';
 
-class OrderContainer extends StatefulWidget {
-  const OrderContainer({
-    super.key,
-  });
+class OrderContainer extends StatelessWidget {
+  final OrderContainerController controller = Get.put(OrderContainerController());
 
-  @override
-  State<OrderContainer> createState() => _OrderContainerState();
-}
-
-class _OrderContainerState extends State<OrderContainer> {
-  List<String> btnLabel = [
-    'Normal',
-    'ခွေ',
-    'ခွေပူး',
-    'အပူး',
-    'စုံပူး',
-    'မပူး',
-    'ပါဝါ',
-    'နက္ခ',
-    'ညီကို',
-    'ကိုညီ',
-    'ညီကို R',
-    'စုံမ',
-    'မစုံ',
-    'စုံမ R',
-    'မစုံ R',
-    // 'စုံစုံ',
-    // 'မမ'
-    // 'စုံကပ်',
-    // 'စုံကပ် R',
-    // 'မကပ်',
-    // 'မကပ် R',
-  ];
-
-  bool rAmountStatus = true;
-  bool numberStatus = true;
-  String numberValue = "??";
-  String typeValue = "";
-  String amountValue = "0";
-  String rAmountValue = '0';
-
-  int inputFocus = 1;
-
-  void typeValueChange(String value) {
-    setState(() {
-      rAmountStatus = false;
-      typeValue = value;
-      numberValue = "??";
-      amountValue = "0";
-
-      if (getNumberStatus(value)) {
-        inputFocus = 1;
-      } else {
-        numberValue = "";
-        inputFocus = 2;
-      }
-    });
-  }
-
-  void rValueChange() {
-    setState(() {
-      rAmountStatus = true;
-      typeValue = "";
-      numberValue = "??";
-      amountValue = "0";
-      inputFocus = 1;
-    });
-  }
-
-  var orderController = Get.put(OrderController());
+  OrderContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -88,25 +22,26 @@ class _OrderContainerState extends State<OrderContainer> {
             children: [
               orderTextField(
                 label: "Number",
-                value: numberValue,
+                value: controller.numberValue.value,
               ),
               orderTextField(
                 label: "Amount",
-                value: amountValue,
+                value: controller.amountValue.value,
                 index: 2,
               ),
-              if (rAmountStatus)
-                orderTextField(
-                  label: "R Amount",
-                  value: rAmountValue,
-                  index: 3,
-                ),
-              if (!rAmountStatus)
-                orderTextField(
-                  label: "Type",
-                  value: typeValue,
-                  index: 4,
-                ),
+              Obx(
+                () => controller.rAmountStatus.value
+                    ? orderTextField(
+                        label: "R Amount",
+                        value: controller.rAmountValue.value,
+                        index: 3,
+                      )
+                    : orderTextField(
+                        label: "Type",
+                        value: controller.typeValue.value,
+                        index: 4,
+                      ),
+              ),
             ],
           ),
           addOrderBtn(),
@@ -114,12 +49,11 @@ class _OrderContainerState extends State<OrderContainer> {
             child: Column(
               children: [
                 SizedBox(
-                  // width: double.infinity,
                   height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
-                    itemCount: btnLabel.length,
+                    itemCount: controller.btnLabel.length,
                     itemBuilder: (context, index) {
                       return ElevatedButton(
                         style: ButtonStyle(
@@ -135,16 +69,16 @@ class _OrderContainerState extends State<OrderContainer> {
                         ),
                         onPressed: () {
                           if (index == 0) {
-                            rValueChange();
+                            // controller.rValueChange();
                           } else {
-                            typeValueChange(btnLabel[index]);
+                            // controller.typeValueChange(controller.btnLabel[index]);
                           }
                         },
                         child: Text(
-                          btnLabel[index],
-                          textScaler: TextScaler.noScaling,
+                          controller.btnLabel[index],
                           style: const TextStyle(
-                            color: AppColors.softBackground,
+                            color: AppColors.success,
+                            fontSize: 11,
                           ),
                         ),
                       );
@@ -159,7 +93,7 @@ class _OrderContainerState extends State<OrderContainer> {
                       textColor: AppColors.softBackground,
                       isNumber: false,
                       onTap: () {
-                        typeValueChange('ထိပ်');
+                        // controller.typeValueChange('ထိပ်');
                       },
                     ),
                     keyboardBtn(label: "1"),
@@ -168,7 +102,9 @@ class _OrderContainerState extends State<OrderContainer> {
                     keyboardBtn(
                       label: "Paste",
                       isNumber: false,
-                      onTap: pasteBtnClick,
+                      onTap: () {
+                        // AppMessage.premiumRequire();
+                      },
                     ),
                   ],
                 ),
@@ -180,7 +116,7 @@ class _OrderContainerState extends State<OrderContainer> {
                       textColor: AppColors.softBackground,
                       isNumber: false,
                       onTap: () {
-                        typeValueChange('ပိတ်');
+                        // controller.typeValueChange('ပိတ်');
                       },
                     ),
                     keyboardBtn(label: "4"),
@@ -190,7 +126,7 @@ class _OrderContainerState extends State<OrderContainer> {
                       label: "DEL",
                       textColor: Colors.red,
                       isNumber: false,
-                      onTap: delBtnClick,
+                      onTap: () {},
                     ),
                   ],
                 ),
@@ -202,7 +138,7 @@ class _OrderContainerState extends State<OrderContainer> {
                       textColor: AppColors.softBackground,
                       isNumber: false,
                       onTap: () {
-                        typeValueChange('ဘြိတ်');
+                        // controller.typeValueChange('ဘြိတ်');
                       },
                     ),
                     keyboardBtn(label: "7"),
@@ -211,7 +147,9 @@ class _OrderContainerState extends State<OrderContainer> {
                     keyboardBtn(
                       label: ">>",
                       isNumber: false,
-                      onTap: nextBtnClick,
+                      onTap: () {
+                        // controller.nextBtnClick(orderController);
+                      },
                     ),
                   ],
                 ),
@@ -223,7 +161,7 @@ class _OrderContainerState extends State<OrderContainer> {
                       textColor: AppColors.softBackground,
                       isNumber: false,
                       onTap: () {
-                        typeValueChange('ပတ်');
+                        // controller.typeValueChange('ပတ်');
                       },
                     ),
                     keyboardBtn(label: '0'),
@@ -233,7 +171,9 @@ class _OrderContainerState extends State<OrderContainer> {
                       label: "ADD",
                       textColor: Colors.green,
                       isNumber: false,
-                      onTap: addBtnClick,
+                      onTap: () {
+                        // controller.addBtnClick(orderController);
+                      },
                     ),
                   ],
                 ),
@@ -266,7 +206,7 @@ class _OrderContainerState extends State<OrderContainer> {
                 ),
               ),
               onPressed: () {
-                orderController.clear();
+                // orderController.clear();
               },
               child: const Text("Add Order!"),
             ),
@@ -287,7 +227,7 @@ class _OrderContainerState extends State<OrderContainer> {
 
   Widget keyboardBtn({
     String label = "0",
-    bool small = false,
+    bool small = true,
     bool isNumber = true,
     Color? textColor,
     void Function()? onTap,
@@ -295,7 +235,6 @@ class _OrderContainerState extends State<OrderContainer> {
     return Expanded(
       child: ElevatedButton(
         style: ButtonStyle(
-          // elevation: const WidgetStatePropertyAll(10),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(7.0),
@@ -305,45 +244,15 @@ class _OrderContainerState extends State<OrderContainer> {
             AppColors.background,
           ),
         ),
-        onPressed: isNumber
-            ? () {
-                if (inputFocus == 1) {
-                  if (numberValue == "??") {
-                    setState(() {
-                      numberValue = label;
-                    });
-                  } else {
-                    setState(() {
-                      numberValue = numberValue + label;
-                    });
-                  }
-                } else if (inputFocus == 2) {
-                  if (amountValue == '0') {
-                    setState(() {
-                      amountValue = label;
-                    });
-                  } else {
-                    setState(() {
-                      amountValue = amountValue + label;
-                    });
-                  }
-                } else if (inputFocus == 3) {
-                  if (rAmountValue == "0") {
-                    setState(() {
-                      rAmountValue = label;
-                    });
-                  } else {
-                    setState(() {
-                      rAmountValue = rAmountValue + label;
-                    });
-                  }
-                }
-              }
-            : onTap,
+        onPressed: () {},
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: small ? 0 : 20.0),
           child: Text(
             label,
+            style: TextStyle(
+              color: textColor ?? Colors.white,
+              fontSize: 11,
+            ),
           ),
         ),
       ),
@@ -358,146 +267,36 @@ class _OrderContainerState extends State<OrderContainer> {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          readOnly: true,
-          onTap: () {
-            setState(() {
-              inputFocus = index;
-            });
-          },
-          autofocus: inputFocus == index,
-          decoration: InputDecoration(
-              label: Text(
-                label,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: inputFocus == index ? Colors.white : Colors.grey.shade600,
+        child: Obx(
+          () => TextField(
+            readOnly: true,
+            onTap: () {
+              controller.inputFocus.value = index;
+            },
+            autofocus: controller.inputFocus.value == index,
+            decoration: InputDecoration(
+                label: Text(
+                  label,
                 ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: inputFocus == index ? Colors.white : Colors.grey.shade600,
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: controller.inputFocus.value == index ? Colors.white : Colors.grey.shade600,
+                  ),
                 ),
-              ),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintText: value,
-              hintStyle: TextStyle(
-                fontSize: 14,
-                color: inputFocus == index ? Colors.white : Colors.grey.shade600,
-              )),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: controller.inputFocus.value == index ? Colors.white : Colors.grey.shade600,
+                  ),
+                ),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                hintText: value,
+                hintStyle: TextStyle(
+                  fontSize: 14,
+                  color: controller.inputFocus.value == index ? Colors.white : Colors.grey.shade600,
+                )),
+          ),
         ),
       ),
     );
-  }
-
-  // Function for Keyboard Action
-
-  inputReset() {
-    setState(() {
-      inputFocus = 1;
-      numberValue = "??";
-      amountValue = "0";
-      rAmountValue = "0";
-      rAmountStatus = true;
-      typeValue = "";
-    });
-  }
-
-  addBtnClick() {
-    if (amountValue == "0" || amountValue == "") {
-      // AppMessage.errorMessage(
-      //   message: "Order များ မှားယွင်းနေပါသည်။",
-      // );
-    } else {
-      orderController.addOrder(
-        numberValue,
-        amountValue,
-        rAmountValue,
-        typeValue,
-      );
-
-      inputReset();
-    }
-  }
-
-  delBtnClick() {
-    if (inputFocus == 1) {
-      if (numberValue.isNotEmpty) {
-        setState(() {
-          numberValue = numberValue.substring(0, numberValue.length - 1);
-        });
-      }
-    } else if (inputFocus == 2) {
-      if (amountValue.isNotEmpty) {
-        setState(() {
-          amountValue = amountValue.substring(0, amountValue.length - 1);
-        });
-      }
-    } else if (inputFocus == 3) {
-      if (rAmountValue.isNotEmpty) {
-        setState(() {
-          rAmountValue = rAmountValue.substring(0, rAmountValue.length - 1);
-        });
-      }
-    }
-  }
-
-  pasteBtnClick() {
-    // AppMessage.premiumRequire();
-  }
-
-  nextBtnClick() {
-    switch (inputFocus) {
-      case 1:
-        if (orderController.inputValidate(numberValue, 1, typeValue)) {
-          setState(() {
-            inputFocus++;
-          });
-        } else {
-          // AppMessage.errorMessage(
-          //   message: "နံပတ်ထည့်သွင်းမှု မှားယွင်းနေပါသည်။ ပြန်လည် စစ်ဆေးပြီး မှန်ကန်စွာထည့်သွင်းပါ။",
-          // );
-        }
-
-        break;
-      case 2:
-        if (orderController.inputValidate(amountValue, 2, typeValue)) {
-          if (rAmountStatus) {
-            setState(() {
-              inputFocus++;
-            });
-          } else {
-            addBtnClick();
-          }
-        } else {
-          // AppMessage.errorMessage(
-          //   message: "အမောင့် ထည့်သွင်းမှု မှားယွင်းနေပါသည်။ ပြန်လည် စစ်ဆေးပြီး မှန်ကန်စွာထည့်သွင်းပါ။",
-          // );
-        }
-
-        break;
-      case 3:
-        addBtnClick();
-        break;
-      case 4:
-        addBtnClick();
-        break;
-    }
-  }
-
-  bool getNumberStatus(String type) {
-    if (type == "အပူး" ||
-        type == "စုံပူး" ||
-        type == "မပူး" ||
-        type == "စုံမ" ||
-        type == "မစုံ" ||
-        type == "စုံမ R" ||
-        type == "မစုံ R" ||
-        type == "စုံစုံ") {
-      numberStatus = false;
-      return false;
-    }
-    return true;
   }
 }

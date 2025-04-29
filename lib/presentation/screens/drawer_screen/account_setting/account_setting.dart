@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rocketledger/core/helpers/bottomsheet_helper.dart';
 import 'package:rocketledger/core/helpers/dialog_helper.dart';
+import 'package:rocketledger/presentation/widgets/app_message.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../components/setting_btn.dart';
@@ -68,20 +69,14 @@ class AccountSetting extends StatelessWidget {
             ),
             title("Profile Settings"),
             const SettingBtn(label: "ဖုန်းနံပတ်", icon: Icons.phone, value: "09-123456789"),
-            const SettingBtn(label: "အကောင့် အမျိုးအစား", icon: Icons.type_specimen_outlined, value: "Bookie"),
-            const SettingBtn(label: "လက်ခံနိုင်သောအေးဂျင့်", icon: Icons.group_outlined, value: "10"),
-            const SettingBtn(label: "လက်ကျန်ရက်", icon: Icons.data_exploration_outlined, value: "29 Days"),
+            const SettingBtn(label: "အကောင့် အမျိုးအစား", icon: Icons.type_specimen_outlined, value: "Free"),
+            const SettingBtn(label: 'ဖုန်းအမျိုးအစား', icon: Icons.mobile_friendly, value: "MAR LX2"),
+            const SettingBtn(label: "လက်ခံနိုင်သောအေးဂျင့်", icon: Icons.group_outlined, value: "0"),
+            const SettingBtn(label: "လက်ကျန်ရက်", icon: Icons.data_exploration_outlined, value: "Unlimited"),
             const SettingBtn(label: "အကောင့်ဖွင့်သည့် ရက်စွဲ", icon: Icons.date_range, value: "2021-09-01"),
             SettingBtn(
               label: "ပါစ့်ဝါ့ ပြောင်းမယ်",
               icon: Icons.lock,
-              onTap: () {
-                Get.dialog(DialogHelper.underDevelopment());
-              },
-            ),
-            SettingBtn(
-              label: "အကောင့်အမျိုးအစားနှင့် စျေးနှုန်းများ",
-              icon: Icons.monetization_on,
               onTap: () {
                 Get.dialog(DialogHelper.underDevelopment());
               },
@@ -102,15 +97,22 @@ class AccountSetting extends StatelessWidget {
             SettingBtn(
               label: "အေးဂျင့် ကော် (%)",
               icon: Icons.payments,
-              value: "8%",
+              value: "0%",
               onTap: () {
-                Get.bottomSheet(
-                  const AppBottomSheet(
-                    title: "Change Commission (% )",
-                  ),
-                );
+                AppMessage.accessDeny();
               },
             ),
+            title('Master Settings'),
+            SettingBtn(
+              label: 'Master ချိတ်ဆက်ခြင်း',
+              icon: Icons.group_outlined,
+              value: "OFF",
+              onTap: () {
+                AppMessage.accessDeny();
+              },
+            ),
+            const SettingBtn(label: 'အမည်', icon: Icons.person),
+            const SizedBox(height: 30)
           ],
         ),
       ),

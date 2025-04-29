@@ -131,6 +131,7 @@ class GameSummaryWidget extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 30),
         ],
       ),
     );

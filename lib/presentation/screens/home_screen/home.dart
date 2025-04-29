@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:rocketledger/core/constants/app_colors.dart';
 import 'package:rocketledger/presentation/widgets/order_list_view.dart';
 
+import '../../widgets/data_row.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -49,11 +51,13 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                dataRow(
-                  label1: "ထိုးကွက်ပေါင်း :",
-                  label2: "ကော်မရှင် :",
-                  value1: "89",
-                  value2: "1,000,000 Ks",
+                const AppDataRow(
+                  label: "ထိုးကွက်ပေါင်း",
+                  value: "87",
+                ),
+                const AppDataRow(
+                  label: "စုစုပေါင်း ကော်မရှင်",
+                  value: "1,000,000 Ks",
                 ),
               ],
             ),
@@ -63,51 +67,6 @@ class HomeScreen extends StatelessWidget {
           child: OrderListView(),
         ),
       ],
-    );
-  }
-
-  Widget dataRow({
-    required String label1,
-    required String label2,
-    required String value1,
-    required String value2,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          dataBlock(label: label1, value: value1),
-          const SizedBox(width: 20),
-          dataBlock(label: label2, value: value2),
-        ],
-      ),
-    );
-  }
-
-  Expanded dataBlock({
-    required String label,
-    required String value,
-  }) {
-    return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-              fontWeight: FontWeight.w200,
-              fontFamily: "MyanmarSabae",
-            ),
-          ),
-          Text(
-            value,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: "MyanmarSabae",
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

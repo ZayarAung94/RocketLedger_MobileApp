@@ -10,16 +10,9 @@ import '../../widgets/app_message.dart';
 import '../home_screen/home.dart';
 import 'components/drawer.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int currentIndex = 0;
-
+class MainScreenController extends GetxController {
+  var currentIndex = 0.obs;
+  final GlobalKey<ScaffoldState> mainScaffoldKey = GlobalKey<ScaffoldState>();
   List<Widget> childScreens = [
     const HomeScreen(),
     const LedgerScreen(),
@@ -27,14 +20,20 @@ class _MainScreenState extends State<MainScreen> {
     const MenuScreen(),
   ];
 
-  var mainScaffoldKey = GlobalKey<ScaffoldState>();
+  void changeIndex(int index) {
+    currentIndex.value = index;
+  }
+}
 
-  bool canAppClose = false;
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final MainScreenController controller = Get.put(MainScreenController());
+
     return Scaffold(
-      key: mainScaffoldKey,
+      key: controller.mainScaffoldKey,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.backgroundAlt,
@@ -43,14 +42,12 @@ class _MainScreenState extends State<MainScreen> {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            // color: AppColors.accent,
           ),
         ),
         leading: IconButton(
-          onPressed: () => mainScaffoldKey.currentState?.openDrawer(),
+          onPressed: () => controller.mainScaffoldKey.currentState?.openDrawer(),
           icon: const Icon(
             Icons.menu,
-            // color: AppColors.accent,
           ),
         ),
         actions: [
@@ -76,37 +73,37 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       drawer: const AppDrawer(),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.softBackground,
-        selectedIconTheme: const IconThemeData(color: AppColors.primary),
-        currentIndex: currentIndex,
-        onTap: (x) {
-          setState(() {
-            currentIndex = x;
-          });
-        },
-        items: [
-          myBNBI(
-            label: "Home",
-            icon: Icons.bar_chart,
-          ),
-          myBNBI(
-            label: "Ledger",
-            icon: Icons.edit_note_rounded,
-          ),
-          myBNBI(
-            label: "Vouchers",
-            icon: Icons.history,
-          ),
-          myBNBI(
-            label: "Menu",
-            icon: Icons.menu,
-          ),
-        ],
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          showUnselectedLabels: true,
+          selectedItemColor: AppColors.primary,
+          unselectedItemColor: AppColors.softBackground,
+          selectedIconTheme: const IconThemeData(color: AppColors.primary),
+          currentIndex: controller.currentIndex.value,
+          onTap: (x) {
+            controller.changeIndex(x);
+          },
+          items: [
+            myBNBI(
+              label: "Home",
+              icon: Icons.bar_chart,
+            ),
+            myBNBI(
+              label: "Ledger",
+              icon: Icons.edit_note_rounded,
+            ),
+            myBNBI(
+              label: "Vouchers",
+              icon: Icons.history,
+            ),
+            myBNBI(
+              label: "Menu",
+              icon: Icons.menu,
+            ),
+          ],
+        ),
       ),
-      body: childScreens[currentIndex],
+      body: Obx(() => controller.childScreens[controller.currentIndex.value]),
     );
   }
 

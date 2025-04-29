@@ -15,7 +15,7 @@ class GameCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => const GameDetail());
+        Get.to(() => GameDetail());
       },
       child: Card(
         margin: const EdgeInsets.all(5),

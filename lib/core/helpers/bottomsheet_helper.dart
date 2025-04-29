@@ -40,6 +40,8 @@ class AppBottomSheet extends StatelessWidget {
               title,
               style: const TextStyle(
                 fontSize: 18,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 20),

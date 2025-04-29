@@ -3,12 +3,13 @@ import 'package:get/get.dart';
 import 'package:rocketledger/core/constants/app_colors.dart';
 import 'package:rocketledger/core/helpers/dialog_helper.dart';
 import 'package:rocketledger/presentation/screens/drawer_screen/account_setting/account_setting.dart';
-import 'package:rocketledger/presentation/screens/drawer_screen/agent_management/agent_manage.dart';
 import 'package:rocketledger/presentation/screens/drawer_screen/app_setting/app_setting.dart';
 import 'package:rocketledger/presentation/screens/drawer_screen/game_history/game_history.dart';
 import 'package:rocketledger/presentation/screens/drawer_screen/lessons/lessons.dart';
+import 'package:rocketledger/presentation/widgets/app_message.dart';
 
-import '../../drawer_screen/payment_history/payment_manage.dart';
+import '../../../widgets/app_btn.dart';
+import '../../../widgets/components/bottom_sheets/contact_us.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -43,37 +44,39 @@ class AppDrawer extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   const Divider(),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.group_add,
                     label: "အေးဂျင့်များအား စီမံခြင်း",
                     onTap: () {
-                      Get.back();
-                      Get.to(() => const AgentManageScreen());
+                      Get.dialog(DialogHelper.underDevelopment());
+                      // Get.back();
+                      // Get.to(() => const AgentManageScreen());
                     },
                   ),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.person_add_alt,
                     label: "ထိုးသားများအား စီမံခြင်း",
                     onTap: () {
                       Get.dialog(DialogHelper.underDevelopment());
                     },
                   ),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.money,
                     label: "ချေးငွေများအား စီမံခြင်း",
                     onTap: () {
                       Get.dialog(DialogHelper.underDevelopment());
                     },
                   ),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.monetization_on_outlined,
                     label: "ငွေပေး ငွေယူများ",
                     onTap: () {
-                      Get.back();
-                      Get.to(() => const PaymentManage());
+                      Get.dialog(DialogHelper.underDevelopment());
+                      // Get.back();
+                      // Get.to(() => const PaymentManage());
                     },
                   ),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.dashboard_outlined,
                     label: "ပြီးဆုံးပြီးသော ပွဲစဉ်များ",
                     onTap: () {
@@ -82,7 +85,7 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                   const Divider(),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.person_2_outlined,
                     label: "အကောင့် အပြင်အဆင်",
                     onTap: () {
@@ -90,7 +93,7 @@ class AppDrawer extends StatelessWidget {
                       Get.to(() => const AccountSetting());
                     },
                   ),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.app_settings_alt_outlined,
                     label: "ဆော့ဝဲ အပြင်အဆင်",
                     onTap: () {
@@ -98,7 +101,7 @@ class AppDrawer extends StatelessWidget {
                       Get.to(() => const AppSetting());
                     },
                   ),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.logout_outlined,
                     label: "Logout",
                     onTap: () {
@@ -113,15 +116,27 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                   const Divider(),
-                  menuBtn(
+                  AppBtn.menuBtn(
                     icon: Icons.play_circle_outline_rounded,
                     label: "သင်ခန်းစာများ",
                     onTap: () {
                       Get.to(() => const LessonScreen());
                     },
                   ),
-                  menuBtn(icon: Icons.feedback_outlined, label: "Feedback"),
-                  menuBtn(icon: Icons.message_outlined, label: "Contact Us"),
+                  AppBtn.menuBtn(
+                    icon: Icons.feedback_outlined,
+                    label: "Feedback",
+                    onTap: () {
+                      AppMessage.underDevelopment();
+                    },
+                  ),
+                  AppBtn.menuBtn(
+                    icon: Icons.message_outlined,
+                    label: "Contact Us",
+                    onTap: () {
+                      Get.bottomSheet(const ContactUs());
+                    },
+                  ),
                   const Divider(),
                   const Text(
                     "Version : 1.001 (Beta)",
@@ -134,30 +149,6 @@ class AppDrawer extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget menuBtn({
-    required IconData icon,
-    required String label,
-    void Function()? onTap,
-  }) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              color: Colors.grey,
-            ),
-            const SizedBox(width: 15),
-            Text(label),
           ],
         ),
       ),

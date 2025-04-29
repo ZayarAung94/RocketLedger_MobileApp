@@ -62,7 +62,7 @@ class OrderListView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              NumberFormat('#,##0').format(284048),
+                              NumberFormat('#,##0').format(1000000),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.start,
@@ -73,7 +73,7 @@ class OrderListView extends StatelessWidget {
                               ),
                             ),
                             const LinearProgressIndicator(
-                              value: 0.8,
+                              value: 0.578,
                             ),
                           ],
                         ),
